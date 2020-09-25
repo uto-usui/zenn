@@ -1,0 +1,23 @@
+{
+  "name": "zenn",
+  "version": "1.0.0",
+  "description": "my zenn documents",
+  "main": "index.js",
+  "scripts": {
+    "create": "npx zenn new:article",
+    "preview": "npx zenn preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uto-usui/zenn.git"
+  },
+  "author": "uto-usui <me@uto-usui.com> (https://uto-usui.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uto-usui/zenn/issues"
+  },
+  "homepage": "https://github.com/uto-usui/zenn#readme",
+  "dependencies": {
+    "zenn-cli": "^0.1.35"
+  }
+}
