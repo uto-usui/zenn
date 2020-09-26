@@ -10,7 +10,7 @@ Nuxt で構築したサイトで [Firebase Cloud Messaging（FCM）](https://fir
 
 Nuxt プロジェクトでは [@nuxtjs/pwa](https://pwa.nuxtjs.org/) をデファクト的に利用することが（個人的に）おおいのですが、これと FCM がバッティングしてしまい、 Firebase 公式の導入方法だと実装できないので、一手間がいります。これは複数（@nuxtjs/pwa と FCM）の service worker を同一スコープで動かせないことが理由です。
 
-FCM を実装するには worker で動くスクリプトと、通知を許可して firebase に登録するスクリプトを用意します。
+FCM を実装するには service worker で動くスクリプトと、通知を許可して Firebase にトークンを登録するスクリプトを用意します。
 
 ## FCM と @nuxtjs/pwa モジュールの共存
 
@@ -34,7 +34,7 @@ module.exports = {
 
 ## Push API を動かす service worker 用のスクリプト
 
-`firebase.initializeApp` のオプション値は FIrebase のプロジェクトのコンソール上 project -> settings -> general -> your apps からそれぞれ参照します。
+`firebase.initializeApp` のオプション値は Firebase のプロジェクトのコンソール上 project -> settings -> general -> your apps からそれぞれ参照します。
 
 fcm.js
 
@@ -153,9 +153,16 @@ FCM のコンソールから通知を作成すると、このスクリプトが�
 
 ## FCM 用のトークンの発行と登録
 
-Nuxt アプリケーションを起動したときにクライアントで実行されるスクリプトとしてプラグインを作成し、ここで通知の許可をリクエストし、許可された場合、トークンを発行して firebase 側に登録することで Push 通知を可能にします。
+Nuxt アプリケーションを起動したときにクライアントで実行されるスクリプトとしてプラグインを作成し、ここで通知の許可をリクエストし、許可された場合、トークンを発行して Firebase 側に登録することで Push 通知を可能にします。
 
-`publicVapidKey` は project -> settings -> cloud messaging -> Web configuration -> Key pair から参照します。
+Firebase のパッケージを利用します。
+
+```bath
+yarn add firebase
+```
+
+
+`publicVapidKey` を project -> settings -> cloud messaging -> Web configuration -> Key pair から参照します。
 
 FCM はデフォルトで firebase-messaging-sw.js というファイル名でスクリプトを作るよう公式に記載されていますが、 @nuxtjs/pwa が生成する sw.js で service worker を起動するよう明示的に指定します。
 
