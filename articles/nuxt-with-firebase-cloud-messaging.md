@@ -8,11 +8,12 @@ published: true
 
 Nuxt で構築したサイトで [Firebase Cloud Messaging（FCM）](https://firebase.google.com/docs/cloud-messaging) を利用して、push 通知を実装します。Nuxt との兼ね合いについて言及するため、FCM のコンソールの使い方などは割愛します。
 
-Nuxt プロジェクトでは [@nuxtjs/pwa](https://pwa.nuxtjs.org/) をデファクト的に利用することが（個人的に）おおいのですが、これと FCM がバッティングしてしまい、 Firebase 公式の導入方法だと実装できないので、一手間がいります。これは 複数（@nuxtjs/pwa と FCM）の service worker を同一スコープで動かせないことが理由です。
+Nuxt プロジェクトでは [@nuxtjs/pwa](https://pwa.nuxtjs.org/) をデファクト的に利用することが（個人的に）おおいのですが、これと FCM がバッティングしてしまい、 Firebase 公式の導入方法だと実装できないので、一手間がいります。これは複数（@nuxtjs/pwa と FCM）の service worker を同一スコープで動かせないことが理由です。
 
 FCM を実装するには worker で動くスクリプトと、通知を許可して firebase に登録するスクリプトを用意します。
 
 ## FCM と @nuxtjs/pwa モジュールの共存
+
 [@nuxtjs/pwa](https://pwa.nuxtjs.org/) は Nuxt の強力なモジュールのひとつです。@nuxtjs/pwa の feature に
 
 > Free background push notifications using OneSignal.
@@ -22,6 +23,7 @@ FCM を実装するには worker で動くスクリプトと、通知を許可�
 @nuxtjs/pwa は sw.js という service worker 用のスクリプトを生成するので、そこに FCM のスクリプトを含めるようにします。nuxt.config.js で workbox のオプションとして cachingExtensions に読み込ませます。
 
 nuxt.config.js
+
 ``` js
 module.exports = {
   workbox: {
@@ -31,9 +33,11 @@ module.exports = {
 ```
 
 ## Push API を動かす service worker 用のスクリプト
+
 `firebase.initializeApp` のオプション値は FIrebase のプロジェクトのコンソール上 project -> settings -> general -> your apps からそれぞれ参照します。
 
 fcm.js
+
 ```js
 importScripts('https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasejs/7.19.0/firebase-messaging.js')
@@ -147,14 +151,16 @@ if (isSupported) {
 
 FCM のコンソールから通知を作成すると、このスクリプトが通知を許可したユーザーのバックグラウンドで動くことになります。
 
-##  FCM 用のトークンの発行と登録
+## FCM 用のトークンの発行と登録
+
 Nuxt アプリケーションを起動したときにクライアントで実行されるスクリプトとしてプラグインを作成し、ここで通知の許可をリクエストし、許可された場合、トークンを発行して firebase 側に登録することで Push 通知を可能にします。
 
 `publicVapidKey` は project -> settings -> cloud messaging -> Web configuration -> Key pair から参照します。
 
-FCM はデフォルトで firebase-messaging-sw.js というファイル名でスクリプトを作るようにセットアップするように公式にも記載されていますが、 @nuxtjs/pwa が生成する sw.js で service worker を起動するように明示的に指定します。
+FCM はデフォルトで firebase-messaging-sw.js というファイル名でスクリプトを作るよう公式に記載されていますが、 @nuxtjs/pwa が生成する sw.js で service worker を起動するよう明示的に指定します。
 
 firebase.client.js
+
 ```js
 import * as firebase from 'firebase/app'
 import 'firebase/messaging'
@@ -223,6 +229,7 @@ if (!firebase.apps.length) {
 作成したスクリプトを nuxt.config.js でクライアントで動作するプラグインとして読み込みます。
 
 nuxt.config.js
+
 ``` js
 module.exports = {
   plugins: [
@@ -232,6 +239,7 @@ module.exports = {
 ```
 
 ## ロイヤルユーザーの UX を高める push 通知
+
 [Safari で動かない](https://caniuse.com/push-api) ことが致命的な Push API ですが、Android や Chrome（フォアグラウンドだと通知こないけど）のユーザーに鮮度の高いメディア UX を届けることでロイヤルユーザーを生む可能性を持っています。FCM を利用することでそれをダッシュボードで管理分析しつつ、フロントエンドでも簡単に実装できるので、ぜひ導入を検討してみてください 🐈
 
 おわります。
