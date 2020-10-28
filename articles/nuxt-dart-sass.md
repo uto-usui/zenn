@@ -3,7 +3,7 @@ title: "Nuxt で Dart Sass を使う"
 emoji: "🐈"
 type: "tech"
 topics: ["vue", "nuxt", "sass", "css"]
-published: false
+published: true
 ---
 
 ## インストール
