@@ -161,7 +161,6 @@ Firebase のパッケージを利用します。
 yarn add firebase
 ```
 
-
 `publicVapidKey` を project -> settings -> cloud messaging -> Web configuration -> Key pair から参照します。
 
 FCM はデフォルトで firebase-messaging-sw.js というファイル名でスクリプトを作るよう公式に記載されていますが、 @nuxtjs/pwa が生成する sw.js で service worker を起動するよう明示的に指定します。
