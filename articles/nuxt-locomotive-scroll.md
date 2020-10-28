@@ -26,7 +26,7 @@ export default (context, inject) => {
 }
 ```
 
-nuxt.config,js で plugin を読み込みます。
+nuxt.config,js で作成した plugin と CSS を読み込みます。
 
 ```js
 module.exports = {
@@ -34,6 +34,7 @@ module.exports = {
     '~plugins/locomotive.client',
     '~plugins/composition-api',
   ],
+  css: ['locomotive-scroll/dist/locomotive-scroll.min.css'],
 }
 ```
 
