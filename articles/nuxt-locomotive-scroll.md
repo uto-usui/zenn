@@ -6,7 +6,6 @@ topics: ["vue", "nuxt", "javascript", 'interactive']
 published: true
 ---
 
-Nuxt と Composition API で Locomotive Scroll をつかう
 [Locomotive Scroll](https://locomotivemtl.github.io/locomotive-scroll/) はパララックスエフェクトやビューポート内の要素を検出してクラスを付与したりスムーススクロールやスティッキーを実装するためのライブラリです。美しい作品をたくさん残しているクリエイティブスタジオの [Locomotive](https://locomotive.ca/en) が制作しています。
 
 Nuxt に導入するためには SSR を考慮する必要があり、そこが Locomotive Scroll との兼ね合いですこし厄介な部分があるのでまとめておきます。
