@@ -43,7 +43,7 @@ npx tailwindcss init -p
 
 `content` を create-vue で作ったファイル構成に合わせます。
 
-```tailwind.config.js
+```js:tailwind.config.js
 module.exports = {
   content: [
     "./src/**/*.{vue,js,ts,jsx,tsx}",
@@ -59,7 +59,7 @@ module.exports = {
 
 `src/assets/base.css` に tailwindディレクティブを追記します。
 
-```src/assets/base.css
+```css:src/assets/base.css
 /**
  * Tailwind CSS
  */
