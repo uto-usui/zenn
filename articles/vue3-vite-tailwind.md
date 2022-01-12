@@ -12,7 +12,7 @@ published: true
 
 まずは create-vue を利用して linter・TypeScript・vue-router・Pinia の環境を対話形式で作っていきます。
 
-- [create-vue](https://github.com/vuejs/create-vue)
+https://github.com/vuejs/create-vue
 
 ```bath
 npm init vue@3
@@ -73,3 +73,5 @@ module.exports = {
 ## まとめ
 
 ということで、しゅっと Vue3 の SPA 開発環境ができました。
+
+おわります。
