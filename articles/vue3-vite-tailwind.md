@@ -1,5 +1,5 @@
 ---
-title: "Vue 3 x Vite x Tailwind CSS 3 の SPA 開発環境をしゅっとつくる３分間"
+title: "Vue 3 x Vite 2 x Tailwind CSS 3 の SPA 開発環境をしゅっとつくる3分間"
 emoji: "🐈"
 type: "tech"
 topics: ["vue", "vite", "tailwind", "css"]
