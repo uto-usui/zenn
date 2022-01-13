@@ -6,7 +6,7 @@ topics: ["vue", "vite", "tailwind", "css"]
 published: true
 ---
 
-最速でなにか作りたいとき、vue3 と Tailwind CSS の開発環境をしゅっと作ります。（３分くらいかな）
+最速でなにか作りたいとき、Vue 3 と Tailwind CSS の開発環境をしゅっと作ります。（３分くらいかな）
 
 ## vue3 の開発環境
 
@@ -18,7 +18,7 @@ https://github.com/vuejs/create-vue
 npm init vue@3
 ```
 
-これで Vue3 と SPA 開発に必要なものがだいたい揃います。  
+これで Vue 3 と SPA 開発に必要なものがだいたい揃います。  
 Vite が爆速なのが最高◎
 
 ## Tailwind CSS の環境整備
@@ -72,6 +72,6 @@ module.exports = {
 
 ## まとめ
 
-ということで、しゅっと Vue3 の SPA 開発環境ができました。
+ということで、しゅっと Vue 3 の SPA 開発環境ができました。
 
 おわります。
